@@ -17,6 +17,10 @@
 #include "vguiscreen.h"
 #endif
 
+#ifdef CSTRIKE_DLL
+#include "cs_shareddefs.h"
+#endif
+
 #if defined( CLIENT_DLL ) && defined( SIXENSE )
 #include "sixense/in_sixense.h"
 #include "sixense/sixense_convars_extern.h"
