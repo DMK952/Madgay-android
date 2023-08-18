@@ -31,6 +31,7 @@ This project is using waf buildsystem. If you have waf-related questions look ht
 - Fixed many bugs
 - Serverbrowser works without steam
 
+
 # Current tasks
 - Rewrite materialsystem for OpenGL render
 - dxvk-native support
