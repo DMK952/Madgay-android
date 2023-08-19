@@ -425,13 +425,6 @@ void CTouchControls::Init()
 	initialized = true;
 }
 
-void CTouchControls::LevelInit()
-{
-	m_bCutScene = false;
-	m_AlphaDiff = 0;
-	m_flHideTouch = 0;
-}
-
 int nextPowerOfTwo(int x)
 {
 	if( (x & (x - 1)) == 0)
@@ -631,8 +624,9 @@ void CTouchControls::Frame()
 		return;
 
 	C_BasePlayer *pPlayer = C_BasePlayer::GetLocalPlayer();
+	bool isMulti = engine->GetMaxClients() > 1;
 
-	if( pPlayer && (pPlayer->GetFlags() & FL_FROZEN || g_pIntroData != NULL) )
+	if( pPlayer && (pPlayer->GetFlags() & FL_FROZEN || g_pIntroData != NULL) && !isMulti )
 	{
 		if( !m_bCutScene )
 		{
