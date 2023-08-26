@@ -31,3 +31,7 @@ C_CSTeam::~C_CSTeam()
 {
 }
 
+C_CSTeam *GetGlobalCSTeam( int iTeamNumber )
+{
+	return (C_CSTeam*) GetGlobalTeam( iTeamNumber );
+}
