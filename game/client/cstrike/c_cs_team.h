@@ -31,5 +31,7 @@ public:
 	virtual			~C_CSTeam();
 };
 
+// Global team handling functions
+C_CSTeam *GetGlobalCSTeam( int iTeamNumber );
 
 #endif // C_CS_TEAM_H
