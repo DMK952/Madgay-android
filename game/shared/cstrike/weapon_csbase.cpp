@@ -1763,7 +1763,7 @@ float	g_lateralBob = 0;
 float	g_verticalBob = 0;
 
 static ConVar	cl_bob_version( "cl_bob_version", "0", FCVAR_CHEAT );
-static ConVar	cl_bobcycle( "cl_bobcycle", "0.98", FCVAR_ARCHIVE, "the frequency at which the viewmodel bobs.", true, 0.1, true, 2.0 );
+static ConVar	cl_bobcycle( "cl_bobcycle", "0.98", FCVAR_CHEAT, "the frequency at which the viewmodel bobs.", true, 0.1, true, 2.0 );
 static ConVar	cl_bobup( "cl_bobup", "0.5", FCVAR_CHEAT );
 
 ConVar	cmod_new_bobbing( "cmod_new_bobbing", "1", FCVAR_ARCHIVE, "What viewbob style to use: CS:S (0) or CS:GO (1)." );
