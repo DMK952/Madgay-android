@@ -181,13 +181,13 @@ void CCSViewRender::PerformFlashbangEffect( const CViewSetup &view )
 	if ( !pMaterial )
 		return;
 
-	byte overlaycolor[4] = { 255, 255, 255, 255 };
+	byte overlaycolor[4] = { 0, 0, 0, 0 };
 	
 	CMatRenderContextPtr pRenderContext( materials );
 	
 	if ( pPlayer->m_flFlashAlpha < pPlayer->m_flFlashMaxAlpha )
 	{
-		pPlayer->m_flFlashAlpha += 45;
+		pPlayer->m_flFlashAlpha += 0;
 		
 		pPlayer->m_flFlashAlpha = MIN( pPlayer->m_flFlashAlpha, pPlayer->m_flFlashMaxAlpha );
 
@@ -251,7 +251,7 @@ void CCSViewRender::PerformFlashbangEffect( const CViewSetup &view )
 	if ( !pMaterial )
 		return;
 
-	float flAlpha = 255;
+	float flAlpha = 0;
 
 	if ( pPlayer->m_flFlashAlpha < pPlayer->m_flFlashMaxAlpha )
 	{
@@ -260,13 +260,13 @@ void CCSViewRender::PerformFlashbangEffect( const CViewSetup &view )
 	else
 	{
 		float flFlashTimeLeft = pPlayer->m_flFlashBangTime - gpGlobals->curtime;
-		float flAlphaPercentage = 1.0;
-		const float certainBlindnessTimeThresh = 3.0; // yes this is a magic number, necessary to match CS/CZ flashbang effectiveness cause the rendering system is completely different.
+		float flAlphaPercentage = 0;
+		const float certainBlindnessTimeThresh = 0; // yes this is a magic number, necessary to match CS/CZ flashbang effectiveness cause the rendering system is completely different.
 
 		if (flFlashTimeLeft > certainBlindnessTimeThresh)
 		{
 			// if we still have enough time of blindness left, make sure the player can't see anything yet.
-			flAlphaPercentage = 1.0;
+			flAlphaPercentage = 0;
 		}
 		else
 		{
