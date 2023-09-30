@@ -16,7 +16,7 @@ class CCvarSlider;
 class ClientModMainMenu;
 
 //-----------------------------------------------------------------------------
-// Main Menu properties
+// Purpose: crosshair options property page
 //-----------------------------------------------------------------------------
 class ClientModMainMenu: public vgui::PropertyPage
 {
@@ -27,6 +27,7 @@ public:
 	~ClientModMainMenu();
 
 	MESSAGE_FUNC( OnControlModified, "ControlModified" );
+	MESSAGE_FUNC_PTR( OnTextChanged, "TextChanged", panel );
 
 	void UpdateViewmodelSliderLabels();
 
@@ -39,15 +40,20 @@ protected:
 	virtual void OnApplyChanges();
 
 private:
-	CCvarToggleCheckButton*		m_pNewBobbing;
+	CCvarToggleCheckButton*		m_pCloseOnBuy;
+	CCvarToggleCheckButton*		m_pUseOpensBuyMenu;
 	CCvarSlider*				m_pViewmodelOffsetX;
 	vgui::Label*				m_pViewmodelOffsetXLabel;
 	CCvarSlider*				m_pViewmodelOffsetY;
 	vgui::Label*				m_pViewmodelOffsetYLabel;
 	CCvarSlider*				m_pViewmodelOffsetZ;
 	vgui::Label*				m_pViewmodelOffsetZLabel;
+	CLabeledCommandComboBox*	m_pViewmodelOffsetPreset;
+	CCvarSlider*				m_pViewmodelFOV;
+	vgui::Label*				m_pViewmodelFOVLabel;
 	CCvarSlider*				m_pViewmodelRecoil;
 	vgui::Label*				m_pViewmodelRecoilLabel;
+	CLabeledCommandComboBox*	m_pViewbobStyle;
 	CLabeledCommandComboBox*	m_pWeaponPos;
 };
 
