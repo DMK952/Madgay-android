@@ -84,10 +84,6 @@ $Project "GameUI"
 		$File	"CreateMultiplayerGameDialog.h"
 		$File	"CreateMultiplayerGameGameplayPage.h"
 		$File	"CreateMultiplayerGameServerPage.h"
-
-        $File	"ModMenu\ClientModMainMenu.h"
-		$File	"ModMenu\ClientModMenuWindow.h"
-
 		$File	"EngineInterface.h"
 		$File	"GameConsole.h"
 		$File	"GameUI_Interface.h"
@@ -237,6 +233,10 @@ $Project "GameUI"
 		$File	"OptionsSubVideo.h"
 		$File	"OptionsSubVoice.cpp"
 		$File	"OptionsSubVoice.h"
+		$File	"ModMenu\ClientModMenuWindow.cpp"
+		$File	"ModMenu\ClientModMenuWindow.h"
+		$File	"ModMenu\ClientModMainMenu.cpp"
+		$File	"ModMenu\ClientModMainMenu.h"
 	}
 	
 	$Folder	"Link Libraries"

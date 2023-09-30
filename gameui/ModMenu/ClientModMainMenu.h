@@ -27,7 +27,6 @@ public:
 	~ClientModMainMenu();
 
 	MESSAGE_FUNC( OnControlModified, "ControlModified" );
-	MESSAGE_FUNC_PTR( OnTextChanged, "TextChanged", panel );
 
 	void UpdateViewmodelSliderLabels();
 
