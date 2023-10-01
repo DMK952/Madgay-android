@@ -36,7 +36,17 @@ using namespace vgui;
 ClientModMenuWindow::ClientModMenuWindow(vgui::Panel *parent) : PropertyDialog(parent, "ClientModMenuWindow")
 {
 	SetDeleteSelfOnClose(true);
-	SetBounds(0, 0, 512, 406);
+
+	int w = 512;
+	int h = 406;
+	if (IsProportional())
+	{
+		w = scheme()->GetProportionalScaledValueEx(GetScheme(), w);
+		h = scheme()->GetProportionalScaledValueEx(GetScheme(), h);
+	}
+
+	SetBounds(0, 0, w, h);
+	
 	SetSizeable( false );
 
 	SetTitle("#GameUI_Clientmod_Menu_Window", true);
