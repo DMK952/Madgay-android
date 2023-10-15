@@ -35,6 +35,7 @@ extern ConVar overview_tracks;
 extern ConVar overview_locked;
 extern ConVar overview_alpha;
 extern ConVar cl_radar_square_with_scoreboard;
+extern ConVar cl_radar_is_circle;
 ConVar cl_radaralpha( "cl_radaralpha", "255", FCVAR_CLIENTDLL | FCVAR_ARCHIVE, NULL, true, 0, true, 255 );
 ConVar cl_radar_rotate( "cl_radar_rotate", "1", FCVAR_ARCHIVE, "1" );
 ConVar cl_radar_scale( "cl_radar_scale", "1.5", FCVAR_ARCHIVE, "Sets the radar scale. Valid values are 1.0 to 3.0", true, 1.0f, true, 3.0f );
@@ -746,7 +747,7 @@ CCSMapOverview::~CCSMapOverview()
 }
 void CCSMapOverview::UpdateFollowEntity()
 {
-	if ( m_bRoundRadar )
+	if ( m_bRoundRadar ||!cl_radar_is_circle.GetBool())
 	{
 		BaseClass::UpdateFollowEntity();
 	}
@@ -2061,16 +2062,21 @@ void CCSMapOverview::FireGameEvent( IGameEvent *event )
 
 void CCSMapOverview::SetMode(int mode)
 {
-	if ( mode == MAP_MODE_RADAR )
-	{
-		m_flChangeSpeed = 0; // change size instantly
-		m_fZoom = cl_radar_scale.GetFloat();
-		if( CBasePlayer::GetLocalPlayer() )
-			SetFollowEntity( CBasePlayer::GetLocalPlayer()->entindex() );
-		
-		SetPaintBackgroundEnabled( true );
-		ShowPanel( true );
-	}
+	    if (mode == MAP_MODE_RADAR)
+    {
+        m_flChangeSpeed = 0; // изменение размера мгновенно
+        m_fZoom = cl_radar_scale.GetFloat();
+        if (C_BasePlayer::GetLocalPlayer())
+        {
+            SetFollowEntity(C_BasePlayer::GetLocalPlayer()->entindex());
+        }
+
+        // Установите значение m_bRoundRadar в зависимости от cl_radar_is_circle
+        m_bRoundRadar = !cl_radar_is_circle.GetBool();
+
+        SetPaintBackgroundEnabled(true);
+        ShowPanel(true);
+    }
 	else if ( mode == MAP_MODE_INSET )
 	{
 		SetPaintBackgroundEnabled( false );
@@ -2195,6 +2201,12 @@ void CCSMapOverview::UpdateSizeAndPosition()
 		{
 			m_bRoundRadar = false;
 			m_fZoom = 0.95f; // fit the entire map in square (don't forget about border)
+		}
+
+		else if ( !cl_radar_is_circle.GetBool() )
+		{
+			m_bRoundRadar = false;
+			m_fZoom = cl_radar_scale.GetFloat();// fit the entire map in square (don't forget about border)
 		}
 		else
 		{
