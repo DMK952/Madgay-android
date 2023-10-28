@@ -54,7 +54,6 @@ using namespace vgui;
 #include "LoadGameDialog.h"
 #include "SaveGameDialog.h"
 #include "OptionsDialog.h"
-#include "ModMenu/ClientModMenuWindow.h"
 #include "CreateMultiplayerGameDialog.h"
 #include "ChangeGameDialog.h"
 #include "BackgroundMenuButton.h"
@@ -881,9 +880,6 @@ CBasePanel::CBasePanel() : Panel(NULL, "BaseGameUIPanel")
 		m_hOptionsDialog_Xbox = new COptionsDialogXbox( this );
 		m_hOptionsDialog_Xbox->MarkForDeletion();
 
-		m_hClientModMenuWindow = new ClientModMenuWindow( this );
-		m_hClientModMenuWindow->MarkForDeletion();
-
 		m_hControllerDialog = new CControllerDialog( this );
 		m_hControllerDialog->MarkForDeletion();
 		
@@ -996,7 +992,6 @@ static const char *g_rgValidCommands[] =
 	"OpenSaveGameDialog",
 	"OpenCustomMapsDialog",
 	"OpenOptionsDialog",
-	"OpenClientModMenuWindow",
 	"OpenBenchmarkDialog",
 	"OpenServerBrowser",
 	"OpenFriendsDialog",
@@ -2078,10 +2073,6 @@ void CBasePanel::RunMenuCommand(const char *command)
 			OnOpenOptionsDialog_Xbox();
 		}
 	}
-	else if ( !Q_stricmp( command, "OpenClientModMenuWindow" ) )
-	{
-		OnOpenClientModMenuWindow();
-	}
 	else if ( !Q_stricmp( command, "OpenControllerDialog" ) )
 	{
 		if ( GameUI().IsConsoleUI() )
@@ -2401,7 +2392,6 @@ bool CBasePanel::IsPromptableCommand( const char *command )
 		 !Q_stricmp( command, "OpenSaveGameDialog" ) ||
 		 !Q_stricmp( command, "OpenBonusMapsDialog" ) ||
 		 !Q_stricmp( command, "OpenOptionsDialog" ) ||
-		 !Q_stricmp( command, "OpenClientModMenuWindow" ) ||
 		 !Q_stricmp( command, "OpenControllerDialog" ) ||
 		 !Q_stricmp( command, "OpenLoadCommentaryDialog" ) ||
          !Q_stricmp( command, "OpenLoadSingleplayerCommentaryDialog" ) ||
@@ -3224,20 +3214,6 @@ void CBasePanel::OnOpenOptionsDialog()
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-void CBasePanel::OnOpenClientModMenuWindow()
-{
-	if ( !m_hClientModMenuWindow.Get() )
-	{
-		m_hClientModMenuWindow = new ClientModMenuWindow( this );
-		PositionDialog( m_hClientModMenuWindow );
-	}
-
-	m_hClientModMenuWindow->Activate();
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: 
-//-----------------------------------------------------------------------------
 void CBasePanel::OnOpenOptionsDialog_Xbox()
 {
 	if ( !m_hOptionsDialog_Xbox.Get() )
@@ -3257,10 +3233,6 @@ void CBasePanel::ApplyOptionsDialogSettings()
 	if (m_hOptionsDialog.Get())
 	{
 		m_hOptionsDialog->ApplyChanges();
-	}
-	if (m_hClientModMenuWindow.Get())
-	{
-		m_hClientModMenuWindow->ApplyChanges();
 	}
 }
 
@@ -3794,10 +3766,6 @@ void CBasePanel::OnGameUIHidden()
 	if ( m_hOptionsDialog.Get() )
 	{
 		PostMessage( m_hOptionsDialog.Get(), new KeyValues( "GameUIHidden" ) );
-	}
-	if ( m_hClientModMenuWindow.Get() )
-	{
-		PostMessage( m_hClientModMenuWindow.Get(), new KeyValues( "GameUIHidden" ) );
 	}
 }
 

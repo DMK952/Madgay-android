@@ -24,6 +24,7 @@
 //include modmenu pages
 #include "ClientModMenuWindow.h"
 #include "ClientModMainMenu.h"
+#include "ClientModInfo.h"
 
 using namespace vgui;
 
