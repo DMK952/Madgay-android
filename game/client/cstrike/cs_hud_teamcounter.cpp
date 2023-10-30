@@ -125,7 +125,7 @@ void CHudTeamCounter::OnThink()
 	if ( teamT )
 	{
 		V_snwprintf( unicode, ARRAYSIZE( unicode ), L"%d", teamT->Get_Score() );
-		m_pCTWinCounterLabel->SetText( unicode );
+		m_pTWinCounterLabel->SetText( unicode );
 	}
 
 	if ( g_PR )
