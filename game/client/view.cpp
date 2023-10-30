@@ -107,9 +107,9 @@ extern ConVar cl_forwardspeed;
 static ConVar v_centermove( "v_centermove", "0.15");
 static ConVar v_centerspeed( "v_centerspeed","500" );
 
-// 54 degrees approximates a 35mm camera - we determined that this makes the viewmodels
+// 74 degrees approximates a 35mm camera - we determined that this makes the viewmodels
 // and motions look the most natural.
-ConVar v_viewmodel_fov( "viewmodel_fov", "54", FCVAR_ARCHIVE );
+ConVar v_viewmodel_fov( "viewmodel_fov", "74", FCVAR_ARCHIVE );
 
 
 ConVar mat_viewportscale( "mat_viewportscale", "1.0", FCVAR_ARCHIVE, "Scale down the main viewport (to reduce GPU impact on CPU profiling)", true, (1.0f / 640.0f), true, 1.0f );

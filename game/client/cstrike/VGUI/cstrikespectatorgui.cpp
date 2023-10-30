@@ -36,7 +36,7 @@ extern ConVar overview_locked;
 extern ConVar overview_alpha;
 extern ConVar cl_radar_square_with_scoreboard;
 extern ConVar cl_radar_is_circle;
-ConVar cl_radaralpha( "cl_radaralpha", "255", FCVAR_CLIENTDLL | FCVAR_ARCHIVE, NULL, true, 0, true, 255 );
+ConVar cl_radaralpha( "cl_radaralpha", "200", FCVAR_CLIENTDLL | FCVAR_ARCHIVE, NULL, true, 0, true, 255 );
 ConVar cl_radar_rotate( "cl_radar_rotate", "1", FCVAR_ARCHIVE, "1" );
 ConVar cl_radar_scale( "cl_radar_scale", "1.5", FCVAR_ARCHIVE, "Sets the radar scale. Valid values are 1.0 to 3.0", true, 1.0f, true, 3.0f );
 

@@ -939,7 +939,7 @@ void CNetGraphPanel::DrawTextFields( int graphvalue, int x, int y, int w, netban
 
 	DrawServerType( x + w, y + textTall );
 
-	Q_snprintf( sz, sizeof( sz ), "loss: %3i%%  choke: %2i%%  clientmod lite ver: madgay edition", (int)(m_AvgPacketLoss*100.0f), (int)(m_AvgPacketChoke*100.0f) );
+	Q_snprintf( sz, sizeof( sz ), "loss: %3i%%  choke: %2i%%  clientmodlite madgay edition", (int)(m_AvgPacketLoss*100.0f), (int)(m_AvgPacketChoke*100.0f) );
 
 	textWidth = TextWidth(font, sz);
 
