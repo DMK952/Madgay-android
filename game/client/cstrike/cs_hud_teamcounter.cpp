@@ -116,16 +116,13 @@ void CHudTeamCounter::OnThink()
 	C_CSTeam *teamCT = GetGlobalCSTeam( TEAM_CT );
 	C_CSTeam *teamT = GetGlobalCSTeam( TEAM_TERRORIST );
 	
-	wchar_t unicode[8];
 	if ( teamCT )
 	{
-		V_snwprintf( unicode, ARRAYSIZE( unicode ), L"%d", teamCT->Get_Score() );
-		m_pCTWinCounterLabel->SetText( unicode );
+		m_pCTWinCounterLabel->SetText( UTIL_VarArgs( "%d", teamCT->Get_Score() ) );
 	}
 	if ( teamT )
 	{
-		V_snwprintf( unicode, ARRAYSIZE( unicode ), L"%d", teamT->Get_Score() );
-		m_pTWinCounterLabel->SetText( unicode );
+		m_pTWinCounterLabel->SetText( UTIL_VarArgs( "%d", teamT->Get_Score() ) );
 	}
 
 	if ( g_PR )
@@ -145,11 +142,8 @@ void CHudTeamCounter::OnThink()
 			}
 		}
 
-		V_snwprintf( unicode, ARRAYSIZE( unicode ), L"%d", iCTCounter );
-		m_pCTAliveCounterLabel->SetText( unicode );
-
-		V_snwprintf( unicode, ARRAYSIZE( unicode ), L"%d", iTCounter );
-		m_pTAliveCounterLabel->SetText( unicode );
+		m_pCTAliveCounterLabel->SetText( UTIL_VarArgs( "%d", iCTCounter ) );
+		m_pTAliveCounterLabel->SetText( UTIL_VarArgs( "%d", iTCounter ) );
 		
 		m_pCTAliveCounterLabel->SetVisible( iCTCounter > 0 );
 		m_pCTAliveTextLabel->SetVisible( iCTCounter > 0 );
@@ -176,7 +170,7 @@ void CHudTeamCounter::OnThink()
 		
 	int iMinutes = iTimer / 60;
 	int iSeconds = iTimer % 60;
-	V_snwprintf( unicode, ARRAYSIZE( unicode ), L"%d : %.2d", iMinutes, iSeconds );
-	m_pRoundTimerLabel->SetText( unicode );
+	
+	m_pRoundTimerLabel->SetText( UTIL_VarArgs( "%d : %d", iMinutes, iSeconds ) );
 	
 }
