@@ -898,8 +898,7 @@ CON_COMMAND_F(connect, "Connect to specified server.", FCVAR_DONTRECORD)
 
         if (!validIP)
         {
-            Color red(  200,  20,  20, 255 );
-			ConColorMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
+            ConMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
             Host_Disconnect(true);
             return;
         }
@@ -923,8 +922,7 @@ CON_COMMAND_F(connect, "Connect to specified server.", FCVAR_DONTRECORD)
 
         if (!validIP)
         {
-            Color red(  200,  20,  20, 255 );
-			ConColorMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
+            ConMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
             Host_Disconnect(true);
             return;
         }
@@ -969,8 +967,7 @@ CON_COMMAND_F(redirect, "Redirect client to specified server.", FCVAR_DONTRECORD
 
         if (!validIP)
         {
-            Color red(  200,  20,  20, 255 );
-			ConColorMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
+            ConMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
             Host_Disconnect(true);
             return;
         }
