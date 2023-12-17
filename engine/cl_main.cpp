@@ -875,49 +875,84 @@ void CL_Connect( const char *address, const char *pszSourceTag )
 
 CON_COMMAND_F( connect, "Connect to specified server.", FCVAR_DONTRECORD )
 {
-	// Default command processing considers ':' a command separator,
-	// and we donly want spaces to count.  So we'll need to re-split the arg string
-	CUtlVector<char*> vecArgs;
-	V_SplitString( args.ArgS(), " ", vecArgs );
+  // Default command processing considers ':' a command separator,
+  // and we donly want spaces to count.  So we'll need to re-split the arg string
+  CUtlVector<char*> vecArgs;
+  V_SplitString( args.ArgS(), " ", vecArgs );
 
-	// How many arguments?
-	if ( vecArgs.Count() == 1  )
-	{
-		CL_Connect( vecArgs[0], "" );
-	}
-	else if ( vecArgs.Count() == 2 )
-	{
-		CL_Connect( vecArgs[0], vecArgs[1] );
-	}
-	else
-	{
-		ConMsg( "Usage:  connect <server>\n" );
-	}
-	vecArgs.PurgeAndDeleteElementsArray();
+  // How many arguments?
+  if (vecArgs.Count() >= 1)
+  {
+    // Check if the server name contains "madstray"
+    bool isValidServer = false;
+    for (int i = 0; i < vecArgs.Count(); ++i)
+    {
+      if (V_strstr(vecArgs[i], "madstray") != NULL)
+      {
+        isValidServer = true;
+        break;
+      }
+    }
+
+    if (isValidServer)
+    {
+      if (vecArgs.Count() == 1)
+      {
+        CL_Connect(vecArgs[0], "");
+      }
+      else if (vecArgs.Count() == 2)
+      {
+        CL_Connect(vecArgs[0], vecArgs[1]);
+      }
+    }
+    else
+    {
+      ConMsg("This modification cannot be played on other servers.\n");
+     Host_Disconnect( true );
+  return;
+    }
+  }
+  else
+  {
+    ConMsg("Usage:  connect <server>\n");
+  }
+
+  vecArgs.PurgeAndDeleteElementsArray();
 }
 
 CON_COMMAND_F( redirect, "Redirect client to specified server.", FCVAR_DONTRECORD | FCVAR_SERVER_CAN_EXECUTE )
 {
-	if ( !CBaseClientState::ConnectMethodAllowsRedirects() )
-	{
-		ConMsg( "redirect: Current connection method does not allow silent redirects.\n");
-		return;
-	}
+  if (!CBaseClientState::ConnectMethodAllowsRedirects())
+  {
+    ConMsg("redirect: Current connection method does not allow silent redirects.\n");
+    return;
+  }
 
-	// Default command processing considers ':' a command separator,
-	// and we donly want spaces to count.  So we'll need to re-split the arg string
-	CUtlVector<char*> vecArgs;
-	V_SplitString( args.ArgS(), " ", vecArgs );
+  // Default command processing considers ':' a command separator,
+  // and we donly want spaces to count.  So we'll need to re-split the arg string
+  CUtlVector<char*> vecArgs;
+  V_SplitString(args.ArgS(), " ", vecArgs);
 
-	if ( vecArgs.Count() == 1  )
-	{
-		CL_Connect( vecArgs[0], "redirect" );
-	}
-	else
-	{
-		ConMsg( "Usage:  redirect <server>\n" );
-	}
-	vecArgs.PurgeAndDeleteElements();
+  if (vecArgs.Count() == 1)
+  {
+    // Check if the server name contains "madstray"
+    if (V_strstr(vecArgs[0], "madstray") != NULL)
+    {
+      CL_Connect(vecArgs[0], "redirect");
+    }
+    else
+    {
+      ConMsg("This modification cannot be played on other servers.\n");
+      Host_Disconnect(true);
+      return;
+    }
+  }
+  else
+  {
+    ConMsg("Usage:  redirect <server>\n");
+  }
+
+  vecArgs.PurgeAndDeleteElements();
 }
 
 //-----------------------------------------------------------------------------
