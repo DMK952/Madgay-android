@@ -873,86 +873,116 @@ void CL_Connect( const char *address, const char *pszSourceTag )
 	gfExtendedError = false;
 }
 
-CON_COMMAND_F( connect, "Connect to specified server.", FCVAR_DONTRECORD )
+CON_COMMAND_F(connect, "Connect to specified server.", FCVAR_DONTRECORD)
 {
-  // Default command processing considers ':' a command separator,
-  // and we donly want spaces to count.  So we'll need to re-split the arg string
-  CUtlVector<char*> vecArgs;
-  V_SplitString( args.ArgS(), " ", vecArgs );
+    // Default command processing considers ':' a command separator,
+    // and we only want spaces to count. So we'll need to re-split the arg string
+    CUtlVector<char*> vecArgs;
+    V_SplitString(args.ArgS(), " ", vecArgs);
 
-  // How many arguments?
-  if (vecArgs.Count() >= 1)
-  {
-    // Check if the server name contains "madstray"
-    bool isValidServer = false;
-    for (int i = 0; i < vecArgs.Count(); ++i)
+    // How many arguments?
+    if (vecArgs.Count() == 1)
     {
-      if (V_strstr(vecArgs[i], "madstray") != NULL)
-      {
-        isValidServer = true;
-        break;
-      }
-    }
+        // your IP check here
+        const char* validIPs[] = {"80.76.43.95:27011", "80.76.43.95:27012", "80.76.43.95:27013", "80.76.43.95:27014", "80.76.43.95:27015", "80.76.43.95:27016"};
 
-    if (isValidServer)
-    {
-      if (vecArgs.Count() == 1)
-      {
+        bool validIP = false;
+        for (int i = 0; i < sizeof(validIPs) / sizeof(validIPs[0]); ++i)
+        {
+            if (V_strcmp(vecArgs[0], validIPs[i]) == 0)
+            {
+                validIP = true;
+                break;
+            }
+        }
+
+        if (!validIP)
+        {
+            Color red(  200,  20,  20, 255 );
+			ConColorMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
+            Host_Disconnect(true);
+            return;
+        }
+
         CL_Connect(vecArgs[0], "");
-      }
-      else if (vecArgs.Count() == 2)
-      {
+    }
+    else if (vecArgs.Count() == 2)
+    {
+        // your IP check here
+        const char* validIPs[] = {"80.76.43.95:27011", "80.76.43.95:27012", "80.76.43.95:27013", "80.76.43.95:27014", "80.76.43.95:27015", "80.76.43.95:27016, 127.0.0.1:27015"};
+
+        bool validIP = false;
+        for (int i = 0; i < sizeof(validIPs) / sizeof(validIPs[0]); ++i)
+        {
+            if (V_strcmp(vecArgs[0], validIPs[i]) == 0)
+            {
+                validIP = true;
+                break;
+            }
+        }
+
+        if (!validIP)
+        {
+            Color red(  200,  20,  20, 255 );
+			ConColorMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
+            Host_Disconnect(true);
+            return;
+        }
+
         CL_Connect(vecArgs[0], vecArgs[1]);
-      }
     }
     else
     {
-      ConMsg("This modification cannot be played on other servers.\n");
-     Host_Disconnect( true );
-  return;
+        ConMsg("Usage: connect <server>\n");
     }
-  }
-  else
-  {
-    ConMsg("Usage:  connect <server>\n");
-  }
 
-  vecArgs.PurgeAndDeleteElementsArray();
+    vecArgs.PurgeAndDeleteElementsArray();
 }
 
-CON_COMMAND_F( redirect, "Redirect client to specified server.", FCVAR_DONTRECORD | FCVAR_SERVER_CAN_EXECUTE )
+CON_COMMAND_F(redirect, "Redirect client to specified server.", FCVAR_DONTRECORD | FCVAR_SERVER_CAN_EXECUTE)
 {
-  if (!CBaseClientState::ConnectMethodAllowsRedirects())
-  {
-    ConMsg("redirect: Current connection method does not allow silent redirects.\n");
-    return;
-  }
-
-  // Default command processing considers ':' a command separator,
-  // and we donly want spaces to count.  So we'll need to re-split the arg string
-  CUtlVector<char*> vecArgs;
-  V_SplitString(args.ArgS(), " ", vecArgs);
-
-  if (vecArgs.Count() == 1)
-  {
-    // Check if the server name contains "madstray"
-    if (V_strstr(vecArgs[0], "madstray") != NULL)
+    if (!CBaseClientState::ConnectMethodAllowsRedirects())
     {
-      CL_Connect(vecArgs[0], "redirect");
+        ConMsg("redirect: Current connection method does not allow silent redirects.\n");
+        return;
+    }
+
+    // Default command processing considers ':' a command separator,
+    // and we only want spaces to count. So we'll need to re-split the arg string
+    CUtlVector<char*> vecArgs;
+    V_SplitString(args.ArgS(), " ", vecArgs);
+
+    if (vecArgs.Count() == 1)
+    {
+        // Add your IP check here
+        const char* validIPs[] = {"80.76.43.95:27011", "80.76.43.95:27012", "80.76.43.95:27013", "80.76.43.95:27014", "80.76.43.95:27015", "80.76.43.95:27016, 127.0.0.1:27015"};
+
+        bool validIP = false;
+        for (int i = 0; i < sizeof(validIPs) / sizeof(validIPs[0]); ++i)
+        {
+            if (V_strcmp(vecArgs[0], validIPs[i]) == 0)
+            {
+                validIP = true;
+                break;
+            }
+        }
+
+        if (!validIP)
+        {
+            Color red(  200,  20,  20, 255 );
+			ConColorMsg("This cheat only works on Madstray servers (madgay uebok), don't cheat on normal servers! \n  Cheat creators: \n AndraMidoxXx(root_GetDLie404) and nvme0n1 \n tg channel: root_GetDLie404_chan");
+            Host_Disconnect(true);
+            return;
+        }
+
+        CL_Connect(vecArgs[0], "redirect");
     }
     else
     {
-      ConMsg("This modification cannot be played on other servers.\n");
-      Host_Disconnect(true);
-      return;
+        ConMsg("Usage: redirect <server>\n");
     }
-  }
-  else
-  {
-    ConMsg("Usage:  redirect <server>\n");
-  }
 
-  vecArgs.PurgeAndDeleteElements();
+    vecArgs.PurgeAndDeleteElements();
 }
 
 //-----------------------------------------------------------------------------
