@@ -7,5 +7,5 @@ wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang
 tar -xf clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 export PATH="$PWD/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04/bin:$PATH"
 ./waf configure -T release --build-game=cstrike --prefix=Srceng-mod-launcher/android --android=armeabi-v7a-hard,host,21 --target=../armeabi-v7a --enable-opus --togles --disable-warns &&
-./waf install --target=client,server,engine --strip
+./waf install --target=client,server,engine,vgui2,vguimatsurface --strip
 rm Srceng-mod-launcher/android/lib/armeabi-v7a/README.md
